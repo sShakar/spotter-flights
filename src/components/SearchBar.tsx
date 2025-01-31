@@ -17,7 +17,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} alignItems="center" sx={{ mt: 2 }}>
         <Grid size={5}>
           <TextField
             label="From"
