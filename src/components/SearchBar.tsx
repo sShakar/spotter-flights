@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import Grid from '@mui/material/Grid2';
+import $api from '@/services/apiService';
 
 interface SearchBarProps {
   onSearch: (searchParams: { departure: string; destination: string }) => void;
@@ -9,10 +11,18 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [departure, setDeparture] = useState('');
   const [destination, setDestination] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSearch({ departure, destination });
+
+    try {
+      const response = await $api.get('searchFlights', {});
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching flights:', error);
+      throw error;
+    }
   };
 
   return (

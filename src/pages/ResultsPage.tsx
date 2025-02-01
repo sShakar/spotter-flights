@@ -1,12 +1,12 @@
+import { useLocation } from 'react-router-dom';
 import Header from '@/components/TheHeader';
-import FiltersSidebar from '@/components/FiltersSidebar';
 import FlightResults from '@/components/FlightResults';
+import FiltersSidebar from '@/components/FiltersSidebar';
 
 export default function ResultsPage() {
-  const flights = [
-    { airline: 'Airline A', price: 250, duration: '5h 30m' },
-    { airline: 'Airline B', price: 300, duration: '6h 15m' },
-  ];
+  const location = useLocation();
+  const flights = location.state?.flights || [];
+  console.log(flights);
 
   return (
     <>
